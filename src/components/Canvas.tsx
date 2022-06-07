@@ -1,16 +1,22 @@
 import "./Canvas.css";
-import { useEffect } from "react";
+import { useOnMounted } from "../utils/hooks";
 
-export default function Canvas() {
-  useEffect(() => {
+type CanvasProps = {
+  src: string;
+};
+
+export default function Canvas({ src }: CanvasProps) {
+  useOnMounted(() => {
     const canvas = document.querySelector("canvas");
-    const image = canvas?.toDataURL("image/png");
-    if (!image) return;
-    const link = document.createElement("a");
-    link.href = image;
-    link.download = "myPainting";
-    link.click();
-  }, []);
+    const context = canvas?.getContext("2d");
+    get_image();
+
+    function get_image() {
+      const image = new Image();
+      image.src = src;
+      image.onload = () => context?.drawImage(image, 0, 0);
+    }
+  });
 
   return <canvas className="canvas" />;
 }
