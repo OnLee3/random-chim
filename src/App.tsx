@@ -8,15 +8,15 @@ function App() {
 
   function clickHandler({ target }: MouseEvent) {
     if (!(target instanceof Element)) return;
-    if (target.className === "filter-list__emotion") {
-      console.log(target.id);
+    if (target.classList.contains("filter-list__emotion")) {
+      target.classList.toggle("selected");
     }
-    if (target.className === "filter-list__people") {
-      console.log(target.id);
+    if (target.classList.contains("filter-list__people")) {
+      target.classList.toggle("selected");
     }
     if (target.className === "save-button") {
-      const canvas = document.querySelector("canvas");
-      const image = canvas?.toDataURL("image/png");
+      const canvas = document.querySelector(".canvas") as HTMLCanvasElement;
+      const image = canvas.toDataURL("image/png");
       if (!image) return;
       const link = document.createElement("a");
       link.href = image;
