@@ -9,7 +9,9 @@ export default function Canvas({ src }: CanvasProps) {
   useOnMounted(() => {
     const canvas = document.querySelector("canvas");
     if (!canvas) return;
-    const { width, height } = canvas;
+    const dpr = window.devicePixelRatio;
+    canvas.width = 300 * dpr;
+    canvas.height = 300 * dpr;
     const context = canvas.getContext("2d");
     get_image();
 
@@ -17,12 +19,13 @@ export default function Canvas({ src }: CanvasProps) {
       const image = new Image();
       image.src = src;
       image.onload = () => {
-        const h_ratio = width / image.width;
-        const v_ratio = height / image.height;
+        if (!canvas) return;
+        const h_ratio = canvas.width / image.width;
+        const v_ratio = canvas.height / image.height;
         const ratio = Math.min(h_ratio, v_ratio);
-        const centerShift_x = (width - image.width * ratio) / 2;
-        const centerShift_y = (height - image.height * ratio) / 2;
-        context?.clearRect(0, 0, width, height);
+        const centerShift_x = (canvas.width - image.width * ratio) / 2;
+        const centerShift_y = (canvas.height - image.height * ratio) / 2;
+        context?.clearRect(0, 0, canvas.width, canvas.height);
         context?.drawImage(
           image,
           0,
@@ -34,6 +37,7 @@ export default function Canvas({ src }: CanvasProps) {
           image.width * ratio,
           image.height * ratio
         );
+        // context?.scale(dpr, dpr);
       };
     }
   });
