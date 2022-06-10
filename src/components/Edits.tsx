@@ -5,31 +5,22 @@ export default function Edits() {
     <div className="edits">
       <section>
         <ul className="filter-list">
-          <li className="filter-list__people" id="chim">
+          <li className="filter-list__people" id="침착맨">
             침착맨
           </li>
-          <li className="filter-list__people" id="pearl">
+          <li className="filter-list__people" id="주호민">
             주호민
           </li>
-          <li className="filter-list__people" id="others">
+          <li className="filter-list__people" id="주변인물">
             주변인물
           </li>
         </ul>
         <ul className="filter-list">
-          <li className="filter-list__emotion" id="ilgal">
-            일갈
-          </li>
-          <li className="filter-list__emotion" id="blame">
-            비난
-          </li>
-          <li className="filter-list__emotion" id="praise">
-            칭찬
-          </li>
-          <li className="filter-list__emotion" id="cry">
-            눈물
-          </li>
           <li className="filter-list__emotion" id="joy">
             기쁨
+          </li>
+          <li className="filter-list__emotion" id="angry">
+            분노
           </li>
         </ul>
       </section>
