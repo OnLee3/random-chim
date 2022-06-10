@@ -3,6 +3,7 @@ import { MouseEvent, useState } from "react";
 import Canvas from "./components/Canvas";
 import Edits from "./components/Edits";
 import getRandomImage from "./utils/getRandomImage";
+import saveImage from "./utils/saveImage";
 
 const people = new Set<string>();
 const emotions = new Set<string>();
@@ -23,13 +24,7 @@ function App() {
       else people.add(target.id);
     }
     if (target.className === "save-button") {
-      const canvas = document.querySelector(".canvas") as HTMLCanvasElement;
-      const image = canvas.toDataURL("image/png");
-      if (!image) return;
-      const link = document.createElement("a");
-      link.href = image;
-      link.download = "침투부-랜덤짤";
-      link.click();
+      saveImage();
     }
     if (target.className === "create-button") {
       setSrc(getRandomImage(people, emotions));
