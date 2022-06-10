@@ -24,6 +24,4 @@ const db = {
   },
 };
 
-const chim_angry_length = db.침착맨.angry.length;
-
 export default db;
