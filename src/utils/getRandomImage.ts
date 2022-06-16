@@ -11,27 +11,42 @@ export default function getRandomImage(
   people?: Set<string>,
   emotions?: Set<string>
 ) {
-  const newArray: string[] = [];
-  let filteredByPeople: PeopleItem[];
+  const newArray = filterImage(people, emotions);
+  const { length } = newArray;
+  const next = parseInt(String(Math.random() * length));
+  return newArray[next];
+}
+
+function filterImage(people?: Set<string>, emotions?: Set<string>) {
+  const filteredByPeople = filterByPeople(people);
+  const filteredByEmotions = filterByEmotions(filteredByPeople, emotions);
+  return filteredByEmotions;
+}
+
+function filterByPeople(people?: Set<string>) {
+  let newArray;
   if (people && people.size > 0) {
-    filteredByPeople = Array.from(people).map((person) => db[person as People]);
+    newArray = Array.from(people).map((person) => db[person as People]);
   } else {
-    filteredByPeople = Object.values(db);
+    newArray = Object.values(db);
   }
+  return newArray;
+}
+function filterByEmotions(
+  filteredByPeople: PeopleItem[],
+  emotions?: Set<string>
+) {
+  const newArray = filteredByPeople;
   if (emotions && emotions.size > 0) {
     Array.from(emotions).forEach((emotion) =>
-      filteredByPeople
+      newArray
         .map((person) => person[emotion as Emotions])
-        .forEach((src) => {
-          newArray.push(...src);
-        })
+        .forEach((src) => newArray.push(...(src as any)))
     );
   } else {
-    filteredByPeople.forEach((person) =>
-      Object.values(person).forEach((src) => newArray.push(...src))
+    newArray.forEach((person) =>
+      Object.values(person).forEach((src) => newArray.push(...(src as any)))
     );
   }
-  const n = newArray.length;
-  const next = parseInt(String(Math.random() * n));
-  return newArray[next];
+  return newArray;
 }
