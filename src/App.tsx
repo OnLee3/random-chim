@@ -4,6 +4,7 @@ import Canvas from "./components/Canvas";
 import Edits from "./components/Edits";
 import getRandomImage from "./utils/getRandomImage";
 import saveImage from "./utils/saveImage";
+import toggleFilter from "./utils/toggleFilter";
 
 const people = new Set<string>();
 const emotions = new Set<string>();
@@ -14,14 +15,10 @@ function App() {
   async function clickHandler({ target }: MouseEvent) {
     if (!(target instanceof Element)) return;
     if (target.classList.contains("filter-list__emotion")) {
-      target.classList.toggle("selected");
-      if (emotions.has(target.id)) emotions.delete(target.id);
-      else emotions.add(target.id);
+      toggleFilter(target, emotions);
     }
     if (target.classList.contains("filter-list__people")) {
-      target.classList.toggle("selected");
-      if (people.has(target.id)) people.delete(target.id);
-      else people.add(target.id);
+      toggleFilter(target, people);
     }
     if (target.className === "save-button") {
       saveImage();
