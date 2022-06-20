@@ -32,19 +32,20 @@ function filterByPeople(people?: Set<string>) {
   }
   return newArray;
 }
+
 function filterByEmotions(
   filteredByPeople: PeopleItem[],
   emotions?: Set<string>
 ) {
-  const newArray = filteredByPeople;
+  const newArray: PeopleItem[] = [];
   if (emotions && emotions.size > 0) {
     Array.from(emotions).forEach((emotion) =>
-      newArray
+      filteredByPeople
         .map((person) => person[emotion as Emotions])
         .forEach((src) => newArray.push(...(src as any)))
     );
   } else {
-    newArray.forEach((person) =>
+    filteredByPeople.map((person) =>
       Object.values(person).forEach((src) => newArray.push(...(src as any)))
     );
   }
