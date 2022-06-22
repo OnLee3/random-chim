@@ -36,8 +36,14 @@ import c_joy09 from "./img/Chim/Chim-joy09.jpg";
 import c_joy10 from "./img/Chim/Chim-joy10.jpg";
 import c_joy11 from "./img/Chim/Chim-joy11.jpg";
 
-import o_angry00 from "./img/Others/angry00_gue.png";
-import o_joy00 from "./img/Others/joy00_gue.jpg";
+import chul_joy00 from "./img/Others/Chul-joy00.jpg";
+import gue_angry00 from "./img/Others/Gue-angry00.png";
+import gue_joy00 from "./img/Others/Gue-joy00.jpg";
+import gue_joy01 from "./img/Others/Gue-joy01.jpg";
+import oak_joy00 from "./img/Others/Oak_joy00.jpeg";
+import poong_angry00 from "./img/Others/Poong-angry00.jpg";
+import poong_angry01 from "./img/Others/Poong-angry01.jpeg";
+import poong_angry02 from "./img/Others/Poong-angry02.jpg";
 
 const db = {
   침착맨: {
@@ -79,8 +85,8 @@ const db = {
     angry: [j_angry00, j_angry01, j_angry02, j_angry03, j_angry04],
   },
   주변인물: {
-    joy: [o_joy00],
-    angry: [o_angry00],
+    joy: [chul_joy00, gue_joy00, gue_joy01, oak_joy00],
+    angry: [poong_angry00, poong_angry01, poong_angry02, gue_angry00],
   },
 };
 
