@@ -7,13 +7,21 @@ type PeopleItem = {
   angry: string[];
 };
 
+function isSame(next: string, cur: string) {
+  if (next === cur) return true;
+  return false;
+}
+
 export default function getRandomImage(
+  src: string,
   people?: Set<string>,
   emotions?: Set<string>
 ) {
   const newArray = filterImage(people, emotions);
   const { length } = newArray;
-  const next = parseInt(String(Math.random() * length));
+  let next = parseInt(String(Math.random() * length));
+  while (isSame(newArray[next], src))
+    next = parseInt(String(Math.random() * length));
   return newArray[next];
 }
 
@@ -37,7 +45,7 @@ function filterByEmotions(
   filteredByPeople: PeopleItem[],
   emotions?: Set<string>
 ) {
-  const newArray: PeopleItem[] = [];
+  const newArray: string[] = [];
   if (emotions && emotions.size > 0) {
     Array.from(emotions).forEach((emotion) =>
       filteredByPeople

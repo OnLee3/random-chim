@@ -24,7 +24,7 @@ function App() {
       saveImage();
     }
     if (target.className === "create-button") {
-      setSrc(getRandomImage(people, emotions) as any);
+      setSrc(getRandomImage(src, people, emotions) as any);
     }
   }
 
